@@ -1,0 +1,56 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type FieldSet {
+  columnId: String
+  title: String
+  description: String
+}
+
+type Task {
+  id: ID!
+  displayId: String!
+  createdAt: Float!
+  updatedAt: Float!
+  deletedAt: Float!
+  taskFields: [TaskField!]!
+  fieldSet: FieldSet!
+}
+
+type TaskField {
+  id: ID!
+  taskId: String!
+  type: String!
+  value: String!
+  task: Task!
+  createdAt: Int!
+  deletedAt: Int!
+}
+
+type Query {
+  tasks: [Task!]!
+  task(id: String!): Task!
+}
+
+type Mutation {
+  createTask(newTaskData: CreateTaskDto!): Task!
+  updateTaskField(taskFieldData: UpdateTaskFieldDto!): Task!
+  deleteTask(id: String!): Task!
+}
+
+input CreateTaskDto {
+  title: String!
+  description: String!
+  columnId: String!
+}
+
+input UpdateTaskFieldDto {
+  id: String!
+  type: String!
+  value: String!
+}
+
+type Subscription {
+  taskAdded: Task!
+}
